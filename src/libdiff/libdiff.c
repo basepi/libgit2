@@ -994,17 +994,19 @@ static void insert_record(int line, struct hashmap *map, int pass)
 	map->record_count++;
 }
 
-static int fill_hashmap(diff_mem_data *data1, diff_mem_data *data2,
+static int fill_hashmap(diff_environment *env, struct hashmap *result,
 		git_diffresults_conf const *results_conf,
-		diff_environment *env, struct hashmap *result,
 		int line1, int count1, int line2, int count2)
 {
 	/*
 	 * If env already has data1/2, then there is no reason to pass
 	 * in two data structs
 	 */
-	result->file1 = data1; /* maybe? result->file1 = env->data1 */
-	result->file2 = data2; /* "" */
+	
+	//result->file1 = data1; /* maybe? result->file1 = env->data1 */
+	//result->file2 = data2; /* "" */
+	result->file1 = env->data1;
+	result->file2 = env->data2;
 	result->results_conf = results_conf;
 	result->env = env;
 
@@ -1101,6 +1103,7 @@ static int patience_diff(diff_environment *env,
 		int line1, int count1, int line2, int count2)
 {
 	struct hashmap map;
+
 	return 0;
 }
 

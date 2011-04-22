@@ -126,9 +126,8 @@ static void insert_record(int line, struct hashmap *map, int which);
  *
  * @return 0 if successful, -1 if fail
  */
-static int fill_hashmap(diff_mem_data *data1, diff_mem_data *data2,
+static int fill_hashmap(diff_environment *env, struct hashmap *result,
 		git_diffresults_conf const *results_conf,
-		diff_environment *env, struct hashmap *result,
 		int line1, int count1, int line2, int count2);
 
 /*
