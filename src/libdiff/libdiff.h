@@ -168,9 +168,14 @@ static int match(struct hashmap *map, int line1, int line2);
  *
  * This function assumes that env was prepared with xdl_prepare_env().
  */
+/*
 static int patience_diff(diff_mem_data *file1, diff_mem_data *file2,
 		git_diffresults_conf const *results_conf,
 		diff_environment *env,
+		int line1, int count1, int line2, int count2);
+*/
+static int patience_diff(diff_environment *env,
+		git_diffresults_conf const *results_conf,
 		int line1, int count1, int line2, int count2);
 
 /*

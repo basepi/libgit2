@@ -1096,9 +1096,8 @@ static int match(struct hashmap *map, int line1, int line2)
 			record2->data, record2->size, map->results_conf->flags);
 }
 
-static int patience_diff(diff_mem_data *file1, diff_mem_data *file2,
+static int patience_diff(diff_environment *env,
 		git_diffresults_conf const *results_conf,
-		diff_environment *env,
 		int line1, int count1, int line2, int count2)
 {
 	struct hashmap map;
@@ -1136,8 +1135,8 @@ static int walk_common_sequence(struct hashmap *map, struct entry *first,
 			struct hashmap submap;
 
 			memset(&submap, 0, sizeof(submap));
-			if (patience_diff(map->file1, map->file2,
-						map->results_conf, map->env,
+			if (patience_diff(map->env,
+						map->results_conf,
 						line1, next1 - line1,
 						line2, next2 - line2)) {
 				return -1;
@@ -1177,7 +1176,8 @@ int prepare_and_patience(diff_environment *env,
 		return -1;
 
 	/* environment is cleaned up in diff() */
-	return patience_diff(env->data1, env->data2, results_conf, env,
-			1, env->data_ctx1.num_recs, 1, env->data_ctx2.num_recs);
+	return patience_diff(env, results_conf,
+			1, env->data_ctx1.num_recs,
+			1, env->data_ctx2.num_recs);
 }
 
