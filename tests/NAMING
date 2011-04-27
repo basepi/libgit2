@@ -34,3 +34,5 @@ Categories
 09__: To be described
 
 10__: Symbolic, loose and packed references reading and writing.
+
+15__: Diff-related functionality
